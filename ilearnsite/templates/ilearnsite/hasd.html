@@ -1,0 +1,65 @@
+{% extends 'ilearnsite/header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+
+    <!-- banner Section -->
+    <section class="slideersec">
+      <div class="container ">
+          <div class="banner">
+              <img class="d-block w-100" src="{%static 'images/hasad.png'%}" alt="First slide" style="border-radius: 12px;" />
+          </div>
+      </div>
+    </section>
+
+    <!-- hased section -->
+    <section class="new-section  serve_info" dir="rtl">
+      <div class="container" style="    text-align: start;">
+        <h1 class="new-section-title">برنامج حصاد</h1>
+        <div class="new-section-content">
+          <p>
+          برنامج حصاد هو برنامج داعم للمنتجات الزراعية والطبيعية المحلية ومشجع على دعم المنتج المحلي 
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="corporateNav cstmr" dir="rtl">
+
+          <p data-target="awafiMembership">تاسيسة</p>
+          <p data-target="whyhasad">لماذا حصاد</p>
+          <p data-target="hasadatchive">انجاز حصاد</p>
+          <p data-target="helpby" >رعاة</p>
+
+        </div>
+        
+
+        <div class="awafiMembership mb-5 showing" style="text-align: start; " dir="rtl">
+          <p class="membership-title">&zwnj;ما هو برنامج حصاد؟&zwnj;</p>
+          <p class="membership-text">  &zwnj;هو برنامج نقاط ومكافآت،&zwnj;&zwj;&zwnj; 
+            يتيح لك الحصول على عروض وجبات عوافي المخفضة وجمع نقاط على مشترياتك&zwnj; واستبدالها بمشتريات من مطاعم الرومانسية.</p>
+        </div>
+
+        <div class="whyhasad mb-5 showing" style="text-align: start; " dir="rtl">
+          <p class="whyhasad-title">لايوجد اي بيانات</p>
+        
+        </div>
+
+        <div class="hasadatchive mb-5 showing" style="text-align: start; " dir="rtl">
+          <p class="hasadatchive-title">لايوجد اي بيانات</p>
+        
+        </div>
+
+        <div class="helpby mb-5 showing" style="text-align: start; " dir="rtl">
+          <p class="helpby-title">لايوجد اي بيانات</p>
+        
+        </div>
+
+      </div>
+
+
+    </section>
+
+  {% endblock%}

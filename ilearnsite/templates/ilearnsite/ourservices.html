@@ -1,0 +1,116 @@
+{% extends 'ilearnsite/header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+    <!-- banner Section -->
+    <section class="slideersec">
+      <div class="container ">
+         
+
+                  <div class="banner">
+                      <img class="d-block w-100" src="{%static 'images/serve.png'%}" alt="First slide" style="border-radius: 12px;" />
+                  </div>
+         
+           
+             
+            
+         
+      </div>
+  </section>
+
+<!-- Service Section -->
+<section class="new-section serve_info" dir="rtl">
+  <div class="container">
+      <h1 class="new-section-title">خدماتنا</h1>
+      <div class="new-section-content">
+          <p>
+              نقدم مجموعة متنوعة من الخدمات التي تلبي احتياجات عملائنا، بما في ذلك 
+              تنظيم الحفلات، تقديم الطعام، وخدمات التأجير. نحن نحرص على تقديم 
+              خدمات عالية الجودة مع التركيز على التفاصيل لضمان تجربة مميزة لكل 
+              مناسبة، سواء كانت حفلات زفاف، اجتماعات عمل، أو أي مناسبة خاصة أخرى.
+          </p>
+      </div>
+  </div>
+</section>
+
+<!-- Cards Section -->
+<section class="new-section" dir="rtl">
+  <div class="container">
+      <div class="card-deck">
+          <!-- Card 1 -->
+          <div class="card">
+              <img src="{%static 'images/card1.png'%}" alt="خدمة 1" class="img-fluid" />
+              <div class="card-body">
+                  <h5 class="card-title">تنظيم الحفلات</h5>
+                  <div class="card-text">
+                      <div class="price">
+                          <i class="fas fa-dollar-sign"></i>
+                          <span> 2590 ر.س </span>
+                      </div>
+                      <div class="number">
+                          <i class="fas fa-users"></i>
+                          <span> 1</span>
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary m-2 card-btn">شاهد</button>
+          </div>
+          <!-- Card 2 -->
+          <div class="card">
+              <img src="{%static 'images/card2.png'%}" alt="خدمة 2" class="img-fluid" />
+              <div class="card-body">
+                  <h5 class="card-title">تقديم الطعام</h5>
+                  <div class="card-text">
+                      <div class="price">
+                          <i class="fas fa-dollar-sign"></i>
+                          <span> 2090 ر.س</span>
+                      </div>
+                      <div class="number">
+                          <span> 1</span>
+                          <i class="fas fa-users"></i>
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary m-2 card-btn">شاهد</button>
+          </div>
+          <!-- Card 3 -->
+          <div class="card">
+              <img src="{%static 'images/card3.png'%}" alt="خدمة 3" class="img-fluid" />
+              <div class="card-body">
+                  <h5 class="card-title">خدمات التأجير</h5>
+                  <div class="card-text">
+                      <div class="price">
+                          <i class="fas fa-dollar-sign"></i>
+                          <span> 1900 ر.س</span>
+                      </div>
+                      <div class="number">
+                          <span> 1</span>
+                          <i class="fas fa-users"></i>
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary m-2 card-btn">شاهد</button>
+          </div>
+          <!-- Card 4 -->
+          <div class="card">
+              <img src="{%static 'images/card4.png'%}" alt="خدمة 4" class="img-fluid" />
+              <div class="card-body">
+                  <h5 class="card-title">تنظيم المؤتمرات</h5>
+                  <div class="card-text">
+                      <div class="price">
+                          <i class="fas fa-dollar-sign"></i>
+                          <span> 4900 ر.س </span>
+                      </div>
+                      <div class="number">
+                          <span> 1</span>
+                          <i class="fas fa-users"></i>
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary m-2 card-btn">شاهد</button>
+          </div>
+      </div>
+  </div>
+</section>
+    
+{% endblock%}

@@ -1,0 +1,77 @@
+{% extends 'ilearnsite/header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+    <!-- banner Section -->
+    <section class="slideersec">
+      <div class="container ">
+                  <div class="banner">
+                      <img class="d-block w-100" src="{%static 'images/new.png'%}" alt="First slide" style="border-radius: 12px;" />
+                  </div>
+      </div>
+    </section>
+  
+      <!-- Special Offers Section -->
+      <section class="special-offers" dir="rtl">
+        <div class="container">
+            <h2 class="section-title">عروض خاصة</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-percent"></i>
+                    </div>
+                    <div class="offer-details">
+                        <h3 class="offer-title">خصم 20% على العشاء</h3>
+                        <p class="offer-description">استمتع بخصم 20% على جميع وجبات العشاء كل يوم خميس.</p>
+                        <p class="offer-validity">صالح حتى 30 سبتمبر</p>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="offer-details">
+                        <h3 class="offer-title">وجبة مجانية مع كل طلب</h3>
+                        <p class="offer-description">احصل على وجبة مجانية عند طلب أي طبق رئيسي.</p>
+                        <p class="offer-validity">صالح حتى 15 أكتوبر</p>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="offer-details">
+                        <h3 class="offer-title">عرض الإفطار المجاني</h3>
+                        <p class="offer-description">استمتع بفطور مجاني مع كل حجز في نهاية الأسبوع.</p>
+                        <p class="offer-validity">صالح حتى 31 ديسمبر</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Restaurant News Section -->
+      <section class="restaurant-news" dir="rtl">
+        <div class="container">
+            <h2 class="section-title">أخبار المطعم</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3 class="news-title">افتتاح فرع جديد!</h3>
+                    <p class="news-description">نحن متحمسون للإعلان عن افتتاح فرعنا الجديد في حي الشهداء. تعالوا وزورونا!</p>
+                    <p class="news-date">تاريخ النشر: 10 أغسطس 2024</p>
+                </div>
+                <div class="news-card">
+                    <h3 class="news-title">إضافة طبق جديد!</h3>
+                    <p class="news-description">أضفنا طبقاً جديداً إلى قائمتنا: "باستا الفطر بالكريمة". جربه الآن!</p>
+                    <p class="news-date">تاريخ النشر: 5 أغسطس 2024</p>
+                </div>
+                <div class="news-card">
+                    <h3 class="news-title">عروض خاصة بمناسبة الافتتاح</h3>
+                    <p class="news-description">احتفالاً بافتتاح الفرع الجديد، نقدم خصومات تصل إلى 25% على جميع الطلبات.</p>
+                    <p class="news-date">تاريخ النشر: 1 أغسطس 2024</p>
+                </div>
+            </div>
+        </div>
+      </section>
+    
+{% endblock%}
