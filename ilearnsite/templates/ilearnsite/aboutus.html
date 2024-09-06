@@ -2,52 +2,75 @@
 {% load static %}
 {% block body %}
 
-    <!-- banner Section -->
+    <!-- Slider Section -->
     <section class="slideersec">
+        <div class="container position-relative">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {%if slides %}
+                {% for slide in slides  %}
+                {% if slide.name_page == 1 %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                    <div class="carousel-caption">
+                        <h3 class="title">{{slide.title}}</h3>
+                        <p class="description">{{slide.description}}</p>
+                    </div>
+                </div>
+                {% endif %} 
+                {% endfor %}
+                {% endif %} 
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            </div>
+        </div>
+      </section>
+
+    <!-- banner Section -->
+    {% comment %} <section class="slideersec">
       <div class="container ">
         <div class="banner">
           <img class="d-block w-100" src="{%static 'images/who.png'%}" alt="First slide" style="border-radius: 12px;"/>
         </div>
       </div>
-    </section>
+    </section> {% endcomment %}
 
     <!-- about section -->
     <section class="new-section  serve_info" dir="rtl">
+        {% for titleForPageChoice in TitleForPageChoices  %}
+        {% if titleForPageChoice.name_page == 6 %}
         <div class="container" style="text-align: start;">
-              <h1 class="new-section-title">  مطعم البيت </h1>
+          <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
           <div class="new-section-content">
-            <p>
-              مطعم البيت هو وجهة مميزة لعشاق الطعام، يقدم تجربة تناول فريدة من نوعها. يتميز المطعم بتصميمه الدافئ والحميمي، مما يجعله مكانًا مثاليًا للعائلات والأصدقاء.
-            </p>
+            <p>{{titleForPageChoice.description}}</p>
           </div>
         </div>
+        {% endif %} 
+        {% endfor %}
     </section>
   
     <!--form and map-->
       <section id="contact-info">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-sm-6 col-md-6">
+                {% if about %}
+                {% for abouts in about  %}
+                <div class="col-lg-4 col-sm-6 col-md-6 mt-4">
                     <div class="contact-info-block text-center">
                         <i class="pe-7s-map-marker"></i>
-                        <h4>العنوان</h4>
-                        <p class="lead">153 ويليامسون بلازا، 09514</p>
+                        <h4>{{abouts.title}}</h4>
+                        <p class="lead">{{abouts.description}}</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="contact-info-block text-center">
-                        <i class="pe-7s-mail"></i>
-                        <h4>البريد الإلكتروني</h4>
-                        <p class="lead">supportdb@dthememascot.com</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="contact-info-block text-center">
-                        <i class="pe-7s-phone"></i>
-                        <h4>رقم الهاتف</h4>
-                        <p class="lead">+23-68017684</p>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %} 
             </div>
         </div>
       </section> 
@@ -117,7 +140,7 @@
                             <div class="w-100"></div>
 
                             <!-- Input -->
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-6 mt-4">
                                 <div class="form-group">
                                     <label class="h6 small d-block text-uppercase">
                                         الموضوع
@@ -132,7 +155,7 @@
                             <!-- End Input -->
 
                             <!-- Input -->
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-6 mb-6 mt-4">
                                 <div class="form-group">
                                     <label class="h6 small d-block text-uppercase">
                                         رقم هاتفك
@@ -148,7 +171,7 @@
                         </div>
 
                         <!-- Input -->
-                        <div class="form-group mb-5">
+                        <div class="form-group mb-5 mt-4">
                             <label class="h6 small d-block text-uppercase">
                                 كيف يمكننا مساعدتك؟
                                 <span class="text-danger">*</span>

@@ -2,62 +2,72 @@
 {% load static %}
 {% load i18n %}
 {% block body %}
-    <!-- banner Section -->
-    <section class="slideersec">
-      <div class="container ">
-         
 
-                  <div class="banner">
-                      <img class="d-block w-100" src="{%static 'images/comm.png'%}" alt="First slide" style="border-radius: 12px;" />
+    <!-- Slider Section -->
+    <section class="slideersec">
+      <div class="container position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                  <div class="carousel-caption">
+                      <h3 class="title">{{slide.title}}</h3>
+                      <p class="description">{{slide.description}}</p>
                   </div>
-         
-           
-             
-            
-         
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </a>
+          </div>
       </div>
     </section>
 
- <!-- hased section -->
+ <!-- service section -->
  <section class="new-section  serve_info" dir="rtl">
+  {% for titleForPageChoice in TitleForPageChoices  %}
+  {% if titleForPageChoice.name_page == 1 %}
   <div class="container" style="    text-align: start;">
-    <h1 class="new-section-title">  المجتمع</h1>
+    <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
     <div class="new-section-content">
-      <p>
-        برنامج خدمة المجتمع يركز على دعم المبادرات المحلية وتعزيز التنمية المستدامة، حيث نسعى لخلق تأثير إيجابي من خلال التعاون مع أفراد المجتمع والمنظمات المحلية.
-      </p>
+      <p>{{titleForPageChoice.description}}</p>
     </div>
   </div>
+  {% endif %} 
+  {% endfor %}
  </section>
 
   <section>
     <div class="container">
+      <!-- Navigation -->
       <div class="corporateNav cstmr" dir="rtl">
-        <p data-target="communityInitiatives">المبادرات المجتمعية</p>
-        <p data-target="communityBenefits">فوائد المجتمع</p>
-        <p data-target="communityFeedback">ملاحظات المجتمع</p>
-        <p data-target="volunteerSupport">الدعم التطوعي</p>
+        {% if community %}
+          {% for communities in community %}
+            <p data-target="section-{{ communities.id }}">{{ communities.title }}</p>
+          {% endfor %}
+        {% endif %}
       </div>
-
-      <div class="communityInitiatives mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="initiatives-title">كيف نساهم في المجتمع؟</p>
-        <p class="initiatives-text">نشارك في العديد من المبادرات التي تهدف إلى تحسين الظروف المعيشية وتعزيز التنمية المستدامة في المجتمع المحلي.</p>
-      </div>
-
-      <div class="communityBenefits mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="benefits-title">فوائد برنامج خدمة المجتمع</p>
-        <p class="benefits-text">نقدم مزايا متعددة تشمل الدعم المالي، ورش العمل، والفرص التعليمية لتعزيز المهارات المحلية.</p>
-      </div>
-
-      <div class="communityFeedback mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="feedback-title">ملاحظات المجتمع</p>
-        <p class="feedback-text">نحن نرحب بملاحظات المجتمع ونستخدمها لتحسين مبادراتنا وتلبية احتياجات الأفراد بشكل أفضل.</p>
-      </div>
-
-      <div class="volunteerSupport mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="support-title">الدعم التطوعي</p>
-        <p class="support-text">نحن نشجع على المشاركة التطوعية ونعمل على توفير فرص للمواطنين للمساهمة في مشروعنا المجتمعي.</p>
-      </div>
+    
+      <!-- Sections -->
+      {% if community %}
+        {% for communities in community %}
+          <div class="mb-5 showing section-{{ communities.id }}" style="text-align: start;" dir="rtl">
+            <p class="section-{{ communities.id }}-title">{{ communities.question }}</p>
+            <p class="section-{{ communities.id }}-text">{{ communities.answer }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </section> 
 

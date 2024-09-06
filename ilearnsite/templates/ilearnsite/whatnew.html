@@ -2,50 +2,57 @@
 {% load static %}
 {% load i18n %}
 {% block body %}
-    <!-- banner Section -->
-    <section class="slideersec">
-      <div class="container ">
-                  <div class="banner">
-                      <img class="d-block w-100" src="{%static 'images/new.png'%}" alt="First slide" style="border-radius: 12px;" />
-                  </div>
-      </div>
-    </section>
+
+      <!-- Slider Section -->
+      <section class="slideersec">
+        <div class="container position-relative">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {%if slides %}
+                {% for slide in slides  %}
+                {% if slide.name_page == 1 %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                    <div class="carousel-caption">
+                        <h3 class="title">{{slide.title}}</h3>
+                        <p class="description">{{slide.description}}</p>
+                    </div>
+                </div>
+                {% endif %} 
+                {% endfor %}
+                {% endif %} 
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
+        </div>
+      </section>
   
       <!-- Special Offers Section -->
       <section class="special-offers" dir="rtl">
         <div class="container">
             <h2 class="section-title">عروض خاصة</h2>
             <div class="offers-grid">
+                {% if offer %}
+                {% for offers in offer %}
                 <div class="offer-card">
                     <div class="offer-icon">
-                        <i class="fas fa-percent"></i>
+                        <i class="fas fa-{{offers.icon}}"></i>
                     </div>
                     <div class="offer-details">
-                        <h3 class="offer-title">خصم 20% على العشاء</h3>
-                        <p class="offer-description">استمتع بخصم 20% على جميع وجبات العشاء كل يوم خميس.</p>
-                        <p class="offer-validity">صالح حتى 30 سبتمبر</p>
+                        <h3 class="offer-title">{{offers.title}}</h3>
+                        <p class="offer-description">{{offers.description}}</p>
+                        <p class="offer-validity">{{offers.date}}</p>
                     </div>
                 </div>
-                <div class="offer-card">
-                    <div class="offer-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="offer-details">
-                        <h3 class="offer-title">وجبة مجانية مع كل طلب</h3>
-                        <p class="offer-description">احصل على وجبة مجانية عند طلب أي طبق رئيسي.</p>
-                        <p class="offer-validity">صالح حتى 15 أكتوبر</p>
-                    </div>
-                </div>
-                <div class="offer-card">
-                    <div class="offer-icon">
-                        <i class="fas fa-coffee"></i>
-                    </div>
-                    <div class="offer-details">
-                        <h3 class="offer-title">عرض الإفطار المجاني</h3>
-                        <p class="offer-description">استمتع بفطور مجاني مع كل حجز في نهاية الأسبوع.</p>
-                        <p class="offer-validity">صالح حتى 31 ديسمبر</p>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
       </section>
@@ -55,21 +62,15 @@
         <div class="container">
             <h2 class="section-title">أخبار المطعم</h2>
             <div class="news-grid">
+                {% if new %}
+                {% for news in new %}
                 <div class="news-card">
-                    <h3 class="news-title">افتتاح فرع جديد!</h3>
-                    <p class="news-description">نحن متحمسون للإعلان عن افتتاح فرعنا الجديد في حي الشهداء. تعالوا وزورونا!</p>
-                    <p class="news-date">تاريخ النشر: 10 أغسطس 2024</p>
+                    <h3 class="news-title">{{news.title}}</h3>
+                    <p class="news-description">{{news.description}}</p>
+                    <p class="news-date">{{news.date}}</p>
                 </div>
-                <div class="news-card">
-                    <h3 class="news-title">إضافة طبق جديد!</h3>
-                    <p class="news-description">أضفنا طبقاً جديداً إلى قائمتنا: "باستا الفطر بالكريمة". جربه الآن!</p>
-                    <p class="news-date">تاريخ النشر: 5 أغسطس 2024</p>
-                </div>
-                <div class="news-card">
-                    <h3 class="news-title">عروض خاصة بمناسبة الافتتاح</h3>
-                    <p class="news-description">احتفالاً بافتتاح الفرع الجديد، نقدم خصومات تصل إلى 25% على جميع الطلبات.</p>
-                    <p class="news-date">تاريخ النشر: 1 أغسطس 2024</p>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
       </section>

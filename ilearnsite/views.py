@@ -16,14 +16,14 @@ def set_language(request):
 
 def index(request):
     slides = slide.objects.all()
-    lastOffer = lastOffers.objects.all()
+    last_offer = lastOffers.objects.filter(status=True).last()
     YourOrders=YourOrder.objects.all()
-    mustKnows = mustKnow.objects.all()
+    mustKnows = mustKnow.objects.last()
     TitleForPageChoices = TitleForPageChoice.objects.all()
     globalsQuality = globalQuality.objects.all() 
     communityServices=communityService.objects.all()
-    downloadApps = downloadApp.objects.all().order_by('-id')[:4][::-1]
-    context = {'slides' : slides,'TitleForPageChoices':TitleForPageChoices,'YourOrders':YourOrders ,'mustKnows' : mustKnows,'globalsQuality' : globalsQuality,'communityService':communityServices ,'downloadApps' : downloadApps,'lastOffer':lastOffer}
+    downloadApps = downloadApp.objects.last()
+    context = {'slides' : slides,'TitleForPageChoices':TitleForPageChoices,'YourOrders':YourOrders ,'mustKnows' : mustKnows,'globalsQuality' : globalsQuality,'communityService':communityServices ,'downloadApps' : downloadApps,'last_offer':last_offer}
     return render(request, "ilearnsite/index.html",context)
 
 def community(request):
@@ -31,21 +31,21 @@ def community(request):
     TitleForPageChoices = TitleForPageChoice.objects.all()
     community = Community.objects.all().order_by('-id')[:4][::-1]
     communities = {'slides':slides ,'TitleForPageChoices' : TitleForPageChoices,'community' : community}
-    return render(request, 'ilearnsite/community.html', {'communities': communities})
+    return render(request, 'ilearnsite/community.html', communities)
 
 def customers(request):
     slides = slide.objects.all()
     TitleForPageChoices = TitleForPageChoice.objects.all()
     customer = Customer.objects.all().order_by('-id')[:4][::-1]
     customers = {'slides':slides ,'TitleForPageChoices' : TitleForPageChoices,'customer' : customer}
-    return render(request, 'ilearnsite/customers.html', {'customers': customers})
+    return render(request, 'ilearnsite/customers.html', customers)
 
 def members(request):
     slides = slide.objects.all()
     TitleForPageChoices = TitleForPageChoice.objects.all()
     member = Members.objects.all().order_by('-id')[:4][::-1]
     members = {'slides':slides ,'TitleForPageChoices' : TitleForPageChoices,'member' : member}
-    return render(request, "ilearnsite/belongtous.html", {'YourOrders': members})
+    return render(request, "ilearnsite/members.html", members)
 
 def ourServices(request):
     slides = slide.objects.all()

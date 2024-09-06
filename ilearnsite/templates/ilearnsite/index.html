@@ -2,46 +2,53 @@
 {% load static %}
 {% load i18n %}
 {% block body %}
-
+ {%if last_offer%}
+<video autoplay muted loop  id="vedio-cover">
+  {% comment %} <source src="images/adver.mp4" type="" > {% endcomment %}
+  <source src="{{last_offer.video_url.url}}" type="" >
+</video> 
+{%endif%}
     <!-- Slider Section -->
     <section class="slideersec">
-        <div class="container position-relative">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                {% for slide in slides  %}
-                {% if slide.name_page == 1 %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
-                    <div class="carousel-caption">
-                        <h3 class="title">{{slide.title}}</h3>
-                        <p class="description">{{slide.description}}</p>
-                    </div>
-                </div>
-                {% endif %} 
-                {% endfor %}
-            </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-                <div class="indicator-container d-flex justify-content-center mt-3">
-                    <span class="indicator active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></span>
-                    <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></span>
-                    <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></span>
-                </div>
-            </div>
-        </div>
+      <div class="container-fluid fluid position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                  {% comment %} <div class="carousel-caption"> {% endcomment %}
+                      {% comment %} <h3 class="title">{{slide.title}}</h3> {% endcomment %}
+                      {% comment %} <p class="description">{{slide.description}}</p> {% endcomment %}
+                  {% comment %} </div> {% endcomment %}
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+          </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </a>
+              <div class="indicator-container-fluid d-flex justify-content-center mt-3">
+                  <span class="indicator active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></span>
+              </div>
+          </div>
+      </div>
     </section>
   
       <!-- service section -->
       <section class="new-section  serve_info" dir="rtl">
         {% for titleForPageChoice in TitleForPageChoices  %}
         {% if titleForPageChoice.name_page == 7 %}
-        <div class="container">
+        <div class="container-fluid fluid firstDiv">
           <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
           <div class="new-section-content">
             <p>{{titleForPageChoice.description}}</p>
@@ -53,152 +60,152 @@
   
       <!-- Cards Section -->
   <section class="new-section" dir="rtl">
-    <div class="container">
+    <div class="container-fluid fluid firstDiv">
       <div class="card-deck" style="justify-content: center;">
-        <!-- Card 1 -->
+        <!-- Card -->
+        {%if YourOrders %}
+        {% for YourOrder in YourOrders  %}
         <div class="card">
-          <img src="{%static 'images/card1.svg'%}" alt="Card 1" />
+          <img src="{{ YourOrder.image.url }}" alt="Image not found" />
           <div class="card-body">
-            <h5 class="card-title">
-              استلام في الفرع <span class="arrow2"></span> 
-            </h5>
+            <a href="{{ YourOrder.url }}">
+              <h5 class="card-title">
+                استلام في الفرع <span class="arrow2"></span> 
+              </h5>
+            </a>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="card">
-          <img src="{%static 'images/card2.jpeg'%}" alt="Card 2" />
-          <div class="card-body">
-            <h5 class="card-title">
-              استلام في الفرع <span class="arrow2"></span> 
-            </h5>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="card">
-          <img src="{%static 'images/card3.svg'%}" alt="Card 3" />
-          <div class="card-body">
-            <h5 class="card-title">
-              استلام في الفرع <span class="arrow2"></span> 
-            </h5>
-          </div>
-        </div>
+        {% endfor %}
+        {% endif %} 
       </div>
     </div>
   </section>
 
     <!-- toknow section -->
     <section class="new-section mt-5 serve_info" dir="rtl">
-      <div class="container">
-        <h1 class="new-section-title">  من حقك تعرف </h1>
+      {% for titleForPageChoice in TitleForPageChoices  %}
+      {% if titleForPageChoice.name_page == 8 %}
+      <div class="container-fluid fluid firstDiv">
+        <h1 class="new-section-title"> {{titleForPageChoice.title}} </h1>
         <div class="new-section-content">
-          <p>
-            تعرف على مطاعم الرومانسية من الداخل واستمتع بأكل يحبه قلبك.
-          </p>
+          <p>{{titleForPageChoice.description}} </p>
         </div>
       </div>
+      {% endif %} 
+      {% endfor %}
      </section>
 
     <!--vedio section-->
       <section> 
-          <div class="container">
+        {%if mustKnows %}
+          <div class="container-fluid fluid firstDiv">
               <video  controls  autoplay  class="vedio-back">
-              <source src="{%static 'images/1.mp4'%}" type="" >
-          </video> 
+                  <source src="{{ mustKnows.video_url.url }}" type="" >
+              </video> 
           <!-- <iframe width="100%" height="500" src="https://www.youtube.com/embed/NqIAOBgiokw" title="الرومانسية من الداخل" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           -->
           </div>
+        {% endif %} 
       </section>
   
     <!-- certfi-->
       <section dir="ltr">
-        <div class="container certifyDiv">
+        {%if globalsQuality %}
+        {% for globalQuality in globalsQuality  %}
+        <div class="container-fluid fluid firstDiv certifyDiv">
           <div class="row gy-4">  
             <div class="col-md-8" >
               <div class="card p-5" dir="rtl" style="text-align: center;  box-sizing: revert;">
                 <div>
-                  <h2 class="title-2">الجودة العالمية :</h2>
-                  <p class="title2-2">
-                    ﺗﻌﺘﻤﺪ ﺳﻴﺎﺳﺔ اﻟﺠﻮدة
-                    ﻓﻲ ﺷﺮﻛﺔ اﻟﺮوﻣﺎﻧﺴﻴﺔ
-                    اﻟﻤﺤﺪودة ﻋﻠﻰ ﺗﻘﺪﻳﻢ
-                    ﻣﻨﺘﺠﺎت آﻣﻨﺔ وﺳﻠﻴﻤﺔ
-                    وﻋﺎﻟﻴﺔ اﻟﺠﻮدة واﻟﻘﻴﻤﺔ
-                    ﺑﺼﻔﺔ ﻣﺴﺘﻤﺮة ﻹرﺿﺎء
-                    اﺣﺘﻴﺎﺟﺎت ﻋﻤﻼﺋﻬﺎ وﺗﺄﻛﻴﺪ
-                    ﺛﻘﺘﻬﻢ
-                  </p>
-                  <a href=""><button class="btn btn-primary p-3 card-btn">إقرأ المزيد</button></a>
+                  <h2 class="title-2">{{globalQuality.title}}</h2>
+                  <p class="title2-2">{{globalQuality.description}}</p>
+                  <a href="{{globalQuality.url}}"><button class="btn btn-primary p-3 card-btn">إقرأ المزيد</button></a>
                 </div>
               </div>
             </div>
             <div class="col-md-4 certifiedLogo " style="position: relative;" >
               <div style="display: flex; " >
                 <img
-                src="{%static 'images/certi1.png'%}"
+                src="{{ globalQuality.image_cirtificate_1.url }}"
                 width="50%"
                 /> 
                 <img
-                src="{%static 'images/certi2.png'%}"
+                src="{{ globalQuality.image_cirtificate_2.url }}"
                 width="50%"
                 />
               </div>
               <img
-                src="{%static 'images/decoration.svg'%}"
+                {% comment %} src="{%static 'images/decoration.svg'%}" {% endcomment %}
+                src="{{ globalQuality.image_cover.url }}"
                 class="decoration"
               />
             </div>
           </div>
         </div>
+        {% endfor %}
+        {% endif %} 
       </section> 
   
   <!--socail serve-->
   <section>
-    <div class="container">
+    {%if communityService %}
+    {% for communityServices in communityService  %}
+    <div class="container-fluid fluid firstDiv">
       <div class="card so_card" >
         <div class="row help-socail">
           <div class="col help-col">
-             <img class="img1" src="{%static 'images/cardlogo.png'%}" alt="Card 1" />
+             <img class="img1" src="{{communityServices.image.url}}" alt="Card 1" />
           </div>
           <div class="col " dir="rtl" style="padding: 2% 2% 2% 1%">
-            <span ><h1 class="com-title">خدمة المجتمع</h1></span>
-            <span><p class="com-details"> تساهم شركة مطاعم الرومانسية بدور قيادي وفعال في خدمة المجتمع، انطلاقًا من وعيها لمسؤولياتها المتعددة بدءًا من حرصها على سلامة وجباتها وتقديمها</p></span>
-           <span> 
-             <img class="comm-footer" src="{%static 'images/cardshape.svg'%}" alt="Card 1" />
-            </span>
+              <span ><h1 class="com-title">{{communityServices.title}}</h1></span>
+              <span><p class="com-details">{{communityServices.description}}</p></span>
+              <span> 
+              <img class="comm-footer" src="{%static 'images/cardshape.svg'%}" alt="Card 1" />
+              </span>
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
+    {% endif %} 
   </section>
   
   <!--download app-->
-  <div class="container mt-5">
+  <div class="container-fluid fluid firstDiv mt-5">
+    {%if downloadApps %}
     <div class="row">
         <div class="col-md-6">
-            <img src="{%static 'images/app.svg'%}" class="img-fluid" alt="Image">
+            <img src="{{downloadApps.image.url}}" class="img-fluid" alt="Image">
         </div>
         <div class="col-md-6 dowmloadapp">
             <div class="row mb-3">
               <div class="col-11 " style="text-align: end; letter-spacing: normal;">
-                <h1>حمل تطبيق الرومانسية</h1>
+                <h1>{{downloadApps.title}}</h1>
               </div>
               <div class="col-1 rectangle"></div>
             </div>
             <div class="row mb-3" style="direction: rtl;">
-                <p>وفرنا لك تطبيق عشان نخدمك ونقدم لك ألذ الطعام. يمكنك الآن تحميل التطبيق من خلال متجر ابل أو متجر جوجل او متجر هواواي</p>
+                <p>{{downloadApps.description}}</p>
             </div>
-            <div class="container">
+            <div class="container-fluid fluid">
               <div class="row" style="justify-content: center;">
                 <div class="col-12 col-md-4 col-sm-12" style="text-align: center;">
-                  <img src="{%static 'images/googlplay.svg'%}" class="app-store" alt="App Store">
+                  <img src="{{downloadApps.image_android_app.url}}" class="app-store" alt="App Store">
                 </div>                
                 <div class="col-12 col-md-2 col-sm-12" style="text-align: center;">
-                  <img src="{%static 'images/apple.svg'%}" class="app-store" alt="App Store">
+                  <img src="{{downloadApps.image_apple_app.url}}" class="app-store" alt="App Store">
                 </div>
               </div>            
             </div>
         </div>
     </div>
+    {% endif %} 
   </div>
-        
+  
+  <script>
+    // After 1 second, remove the splash screen
+    setTimeout(function() {
+        document.getElementById('vedio-cover').style.display = 'none';
+    }, 4000); // 1000 milliseconds = 1 second
+  </script>
 {% endblock%}

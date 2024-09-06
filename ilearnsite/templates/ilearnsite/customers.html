@@ -3,64 +3,72 @@
 {% load i18n %}
 {% block body %}
 
-    <!-- banner Section -->
+    <!-- Slider Section -->
     <section class="slideersec">
-      <div class="container ">
-         
-
-                  <div class="banner">
-                      <img class="d-block w-100" src="{%static 'images/coustom.png'%}" alt="First slide" style="border-radius: 12px;" />
+      <div class="container position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                  <div class="carousel-caption">
+                      <h3 class="title">{{slide.title}}</h3>
+                      <p class="description">{{slide.description}}</p>
                   </div>
-         
-           
-             
-            
-         
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+          </div>
       </div>
-  </section>
+    </section>
 
   <!-- coustomer section -->
   <section class="new-section  serve_info" dir="rtl">
-    <div class="container" style="    text-align: start;">
-            <h1 class="new-section-title">  العملاء</h1>
-          <div class="new-section-content">
-          <p>
-            برنامج خدمة العملاء يهدف إلى تعزيز تجربة العملاء من خلال تقديم الدعم المستمر والمزايا الحصرية، مما يساعد على بناء علاقة قوية بيننا وبين عملائنا.
-          </p>
-        </div>
+    {% for titleForPageChoice in TitleForPageChoices  %}
+    {% if titleForPageChoice.name_page == 2 %}
+    <div class="container" style="text-align: start;">
+      <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
+      <div class="new-section-content">
+        <p>{{titleForPageChoice.description}}</p>
       </div>
     </div>
+    {% endif %} 
+    {% endfor %}
   </section>
 
   <section>
     <div class="container">
+      <!-- Navigation -->
       <div class="corporateNav cstmr" dir="rtl">
-        <p data-target="customerExperience">تجربة العميل</p>
-        <p data-target="customerBenefits">فوائد العملاء</p>
-        <p data-target="customerFeedback">ملاحظات العملاء</p>
-        <p data-target="support">الدعم</p>
+        {% if customer %}
+          {% for customers in customer %}
+            <p data-target="section-{{ customers.id }}">{{ customers.title }}</p>
+          {% endfor %}
+        {% endif %}
       </div>
-
-      <div class="customerExperience mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="experience-title">كيف نعتني بعملائنا؟</p>
-        <p class="experience-text">نحن نحرص على تقديم أفضل تجربة ممكنة لعملائنا من خلال منتجاتنا وخدماتنا. نسعى دائماً لتلبية احتياجاتهم وتوقعاتهم.</p>
-      </div>
-
-      <div class="customerBenefits mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="benefits-title">فوائد برنامج حصاد للعملاء</p>
-        <p class="benefits-text">يقدم برنامج حصاد مزايا متعددة تشمل خصومات حصرية، عروض خاصة، ونقاط مكافآت على المشتريات.</p>
-      </div>
-
-      <div class="customerFeedback mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="feedback-title">ملاحظات العملاء</p>
-        <p class="feedback-text">نحن نقدر ملاحظات عملائنا ونعمل باستمرار على تحسين خدماتنا استنادًا إلى آرائهم.</p>
-      </div>
-
-      <div class="support mb-5 showing" style="text-align: start;" dir="rtl">
-        <p class="support-title">الدعم المتاح</p>
-        <p class="support-text">فريق الدعم لدينا متاح دائمًا لمساعدتك في أي استفسارات أو مشكلات قد تواجهها.</p>
-      </div>
+    
+      <!-- Sections -->
+      {% if customer %}
+        {% for customers in customer %}
+          <div class="mb-5 showing section-{{ customers.id }}" style="text-align: start;" dir="rtl">
+            <p class="section-{{ customers.id }}-title">{{ customers.question }}</p>
+            <p class="section-{{ customers.id }}-text">{{ customers.answer }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
-  </section>
+  </section> 
 
   {% endblock%}

@@ -2,113 +2,76 @@
 {% load static %}
 {% load i18n %}
 {% block body %}
-    <!-- banner Section -->
+    <!-- Slider Section -->
     <section class="slideersec">
-      <div class="container ">
-         
-
-                  <div class="banner">
-                      <img class="d-block w-100" src="{%static 'images/serve.png'%}" alt="First slide" style="border-radius: 12px;" />
+      <div class="container position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                  <div class="carousel-caption">
+                      <h3 class="title">{{slide.title}}</h3>
+                      <p class="description">{{slide.description}}</p>
                   </div>
-         
-           
-             
-            
-         
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+          </div>
       </div>
-  </section>
+    </section>
 
 <!-- Service Section -->
-<section class="new-section serve_info" dir="rtl">
-  <div class="container">
-      <h1 class="new-section-title">خدماتنا</h1>
+  <section class="new-section  serve_info" dir="rtl">
+    {% for titleForPageChoice in TitleForPageChoices  %}
+    {% if titleForPageChoice.name_page == 4 %}
+    <div class="container" style="text-align: start;">
+      <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
       <div class="new-section-content">
-          <p>
-              نقدم مجموعة متنوعة من الخدمات التي تلبي احتياجات عملائنا، بما في ذلك 
-              تنظيم الحفلات، تقديم الطعام، وخدمات التأجير. نحن نحرص على تقديم 
-              خدمات عالية الجودة مع التركيز على التفاصيل لضمان تجربة مميزة لكل 
-              مناسبة، سواء كانت حفلات زفاف، اجتماعات عمل، أو أي مناسبة خاصة أخرى.
-          </p>
+        <p>{{titleForPageChoice.description}}</p>
       </div>
-  </div>
-</section>
+    </div>
+    {% endif %} 
+    {% endfor %}
+  </section>
 
 <!-- Cards Section -->
 <section class="new-section" dir="rtl">
   <div class="container">
       <div class="card-deck">
-          <!-- Card 1 -->
+          <!-- Cards -->
+          {%if Service %}
+          {% for Services in Service  %}
           <div class="card">
-              <img src="{%static 'images/card1.png'%}" alt="خدمة 1" class="img-fluid" />
+              <img src="{{Services.image.url}}" alt="خدمة" class="img-fluid" />
               <div class="card-body">
-                  <h5 class="card-title">تنظيم الحفلات</h5>
+                  <h5 class="card-title">{{Services.title}}</h5>
                   <div class="card-text">
                       <div class="price">
-                          <i class="fas fa-dollar-sign"></i>
-                          <span> 2590 ر.س </span>
+                          <span> {{Services.price}} </span>
                       </div>
                       <div class="number">
-                          <i class="fas fa-users"></i>
-                          <span> 1</span>
+                          <span>  {{Services.number}}  </span>
+                          <i class="fas fa-users"> </i>
                       </div>
                   </div>
               </div>
-              <button class="btn btn-primary m-2 card-btn">شاهد</button>
+              <a href="{{Services.url}}" class="btn btn-primary m-2 card-btn">شاهد</a>
           </div>
-          <!-- Card 2 -->
-          <div class="card">
-              <img src="{%static 'images/card2.png'%}" alt="خدمة 2" class="img-fluid" />
-              <div class="card-body">
-                  <h5 class="card-title">تقديم الطعام</h5>
-                  <div class="card-text">
-                      <div class="price">
-                          <i class="fas fa-dollar-sign"></i>
-                          <span> 2090 ر.س</span>
-                      </div>
-                      <div class="number">
-                          <span> 1</span>
-                          <i class="fas fa-users"></i>
-                      </div>
-                  </div>
-              </div>
-              <button class="btn btn-primary m-2 card-btn">شاهد</button>
-          </div>
-          <!-- Card 3 -->
-          <div class="card">
-              <img src="{%static 'images/card3.png'%}" alt="خدمة 3" class="img-fluid" />
-              <div class="card-body">
-                  <h5 class="card-title">خدمات التأجير</h5>
-                  <div class="card-text">
-                      <div class="price">
-                          <i class="fas fa-dollar-sign"></i>
-                          <span> 1900 ر.س</span>
-                      </div>
-                      <div class="number">
-                          <span> 1</span>
-                          <i class="fas fa-users"></i>
-                      </div>
-                  </div>
-              </div>
-              <button class="btn btn-primary m-2 card-btn">شاهد</button>
-          </div>
-          <!-- Card 4 -->
-          <div class="card">
-              <img src="{%static 'images/card4.png'%}" alt="خدمة 4" class="img-fluid" />
-              <div class="card-body">
-                  <h5 class="card-title">تنظيم المؤتمرات</h5>
-                  <div class="card-text">
-                      <div class="price">
-                          <i class="fas fa-dollar-sign"></i>
-                          <span> 4900 ر.س </span>
-                      </div>
-                      <div class="number">
-                          <span> 1</span>
-                          <i class="fas fa-users"></i>
-                      </div>
-                  </div>
-              </div>
-              <button class="btn btn-primary m-2 card-btn">شاهد</button>
-          </div>
+          {% endfor %}
+          {% endif %} 
       </div>
   </div>
 </section>

@@ -31,8 +31,6 @@ class mustKnow(models.Model):
     id = models.AutoField(primary_key=True)
     video_url = models.FileField(upload_to='static/vid')
 
-    def __str__(self):
-        return self.video_url
     class Meta:
         verbose_name = "من حقك تعرف"
         verbose_name_plural = "من حقك تعرف"
@@ -50,7 +48,7 @@ class globalQuality(models.Model):
     id = models.AutoField(primary_key=True)
     image_cirtificate_1 = models.ImageField(upload_to='static/img')
     image_cirtificate_2 = models.ImageField(upload_to='static/img')
-    image_cover = models.ImageField(upload_to='static/img',blank=True,null=True)
+    image_cover = models.ImageField(upload_to='static/img')
     title = models.CharField(max_length=255)
     description = models.TextField()
     url = models.URLField()
@@ -91,7 +89,7 @@ class downloadApp(models.Model):
 class Community(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    question = models.CharField(max_length=555,default="")
+    question = models.CharField(max_length=555)
     answer = models.TextField()
 
     def __str__(self):
@@ -103,7 +101,7 @@ class Community(models.Model):
 class Customer(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    question = models.CharField(max_length=555,default="")
+    question = models.CharField(max_length=555)
     answer = models.TextField()
 
 
@@ -116,7 +114,7 @@ class Customer(models.Model):
 class Members(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    question = models.CharField(max_length=555,default="")
+    question = models.CharField(max_length=555)
     answer = models.TextField()
 
     def __str__(self):
@@ -129,7 +127,7 @@ class Services(models.Model):
     id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='static/img',null=True,blank=True)
     title = models.CharField(max_length=255)
-    price = models.CharField(max_length=255,default="")
+    price = models.CharField(max_length=255,default="100")
     number = models.CharField(max_length=100)
     url = models.URLField()
 
@@ -142,7 +140,7 @@ class Services(models.Model):
 class Hasad(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    question = models.CharField(max_length=555,default="")
+    question = models.CharField(max_length=555)
     answer = models.TextField()
 
     def __str__(self):
@@ -153,9 +151,9 @@ class Hasad(models.Model):
 
 class locationBranch(models.Model):
     id = models.AutoField(primary_key=True)
-    branch = models.CharField(max_length=100,default="فرع الرئيسي")
+    branch = models.CharField(max_length=100,default="الفرع الرئيسي")
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255,default="")
+    description = models.TextField()
     url = models.URLField()
     date = models.CharField(max_length=100)
 
@@ -167,10 +165,10 @@ class locationBranch(models.Model):
         
 class offers(models.Model):
     id = models.AutoField(primary_key=True)
-    icon = models.ImageField(upload_to='static/img',null=True,blank=True)
+    icon = models.CharField(max_length=255,default="percent")
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=100)
-    date = models.CharField(max_length=100,default="iLearn.ye@gmail.com")
+    description = models.TextField()
+    date = models.CharField(max_length=100,default="صالح حتى 30 سبتمبر")
 
     def __str__(self):
         return self.title        
@@ -181,7 +179,7 @@ class offers(models.Model):
 class news(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255,default="")
+    description = models.TextField()
     date = models.CharField(max_length=100)
 
     def __str__(self):
@@ -193,7 +191,7 @@ class news(models.Model):
 class About(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255,default="")
+    description = models.TextField()
 
     def __str__(self):
         return self.title
@@ -205,7 +203,7 @@ class About(models.Model):
 class TitleForPageChoice(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255,default="")
+    description = models.TextField()
     name_page = models.IntegerField(choices=TitleForPageChoice.choices,default=TitleForPageChoice.R1)
 
     def __str__(self):

@@ -18,7 +18,7 @@ body {
 }
 
 .newNav {
-    margin: 2em 0;
+    /* margin: 2em 0; */
     padding-top: 1em ;
     padding-left: 0;
     padding-right: 0;
@@ -492,6 +492,7 @@ select {
 
 .snav {
     animation: slideFromAbove 1s ease-out;
+    animation-delay: 4050ms;
 }
 
 @keyframes slideFromAbove {
@@ -526,13 +527,18 @@ select {
     font-size: xx-large;
 }
 
+
 .title {
+    
     animation: slideFromRight 1s forwards;
+    animation-delay: 4050ms;
+    
     opacity: 0;
 }
 
 .description {
     animation: slideFromLeft 1s forwards;
+    animation-delay: 4050ms;
     opacity: 0;
 }
 
@@ -923,7 +929,7 @@ select {
 
 .fluid{
 
-    --bs-gutter-x: 4rem!important;
+    --bs-gutter-x: 6rem!important;
 }
 
 .social-bar {
@@ -943,6 +949,11 @@ select {
     transition: color 0.3s ease;
 }
 
+.social-bar>a>i{
+    
+    color: white;
+
+} 
 
 .social-bar :hover {
     color: rgb(255, 215, 215);
@@ -963,9 +974,20 @@ select {
     z-index: 12;
 } */
 
-
 .nav-logo {
     height: 30px; /* Adjust height as needed */
     margin: 0 10px; /* Add space around the logo */
     vertical-align: middle; /* Align logo with text */
   }
+#vedio-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #333; /* Fallback color */
+    background-image: url('images/adver.mp4');
+    background-size: cover;
+    background-position: center;
+}  
