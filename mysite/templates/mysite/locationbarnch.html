@@ -1,0 +1,178 @@
+{% extends 'mysite/header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+
+    <!-- Slider Section -->
+    <section class="slideersec">
+      <div class="container position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                  <div class="carousel-caption">
+                      <h3 class="title">{{slide.title}}</h3>
+                      <p class="description">{{slide.description}}</p>
+                  </div>
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+          </div>
+      </div>
+    </section>
+
+    <!-- Branch section -->
+    <section class="br-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center mt-4 pt-3">
+                  <div class="col-xl-10">
+                    <ul class="timeline mb-0">
+                      {% if locationsBranch %}
+                      {% for locationsBranchs in locationsBranch %}
+                      <li>
+                        <div class="date bg-light">
+                          <h5 class="text-uppercase mb-0 fs-16">{{locationsBranchs.branch}}</h5>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="event-content">
+                              <div class="timeline-date bg-branch text-center rounded float-end">
+                                <p class="mb-0 text-white">{{locationsBranchs.date}}</p>
+                              </div>
+                              <div class="timeline-text">
+                                <h3 class="fs-4">{{locationsBranchs.title}}</h3>
+                                <p class="mb-0 mt-2 pt-1 text-muted">{{locationsBranchs.description}}</p>
+                                <a href="{{locationsBranchs.url}}" class="btn btn-primary btn-rounded waves-effect waves-light mt-4" style="background:#e47100; border-color: #703800;">الموقع</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      {% endfor %}
+                      {% endif %} 
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  mobile Branch section -->
+    <section class="mo-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center mt-4 pt-3">
+                  <div class="col-xl-10">
+
+                        <div class="date bg-light">
+                          <h5 class="text-uppercase mb-0 fs-16">فرع  الرئيسي</h5>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="event-content">
+                              <div class="timeline-date bg-branch text-center rounded float-end">
+                                <h3 class="text-white mb-0 fs-17">11</h3>
+                                <p class="mb-0 text-white-50">يونيو</p>
+                              </div>
+                              <div class="timeline-text">
+                                <h3 class="fs-4">افتتاح الفرع الرئيسي</h3>
+                                <p class="mb-0 mt-2 pt-1 text-muted">تم افتتاح الفرع الأول في موقع استراتيجي لتلبية احتياجات العملاء المحليين.</p>
+                                <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light mt-4" style="background:#e47100; border-color: #703800;"> الموقع</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="date bg-light">
+                          <h5 class="text-uppercase mb-0 fs-16">فرع الزبيري</h5>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="event-content">
+                              <div class="timeline-date bg-branch text-center rounded float-end">
+                                <h3 class="text-white mb-0 fs-17">16</h3>
+                                <p class="mb-0 text-white-50">فبراير</p>
+                              </div>
+                              <div class="timeline-text">
+                                <h3 class="fs-4">افتتاح الفرع الثاني</h3>
+                                <p class="mb-0 mt-2 pt-1 text-muted">تمت إضافة الفرع الثاني لتوسيع نطاق خدماتنا وزيادة الوصول إلى العملاء.</p>
+                                <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light mt-4" style="background:#e47100; border-color: #703800;"> الموقع</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="date bg-light">
+                          <h5 class="text-uppercase mb-0 fs-16">فرع  حدة</h5>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="event-content">
+                              <div class="timeline-date bg-branch text-center rounded float-end">
+                                <h3 class="text-white mb-0 fs-17">28</h3>
+                                <p class="mb-0 text-white-50">فبراير</p>
+                              </div>
+                              <div class="timeline-text">
+                                <h3 class="fs-4">افتتاح الفرع الثالث</h3>
+                                <p class="mb-0 mt-2 pt-1 text-muted">نحن فخورون بإطلاق الفرع الثالث الذي يخدم المزيد من العملاء في المنطقة.</p>
+                                <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light mt-4" style="background:#e47100; border-color: #703800;"> الموقع</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="date bg-light">
+                          <h5 class="text-uppercase mb-0 fs-16">فرع المصباحي</h5>
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="event-content">
+                              <div class="timeline-date bg-branch text-center rounded float-end">
+                                <h3 class="text-white mb-0 fs-17">25</h3>
+                                <p class="mb-0 text-white-50">مايو</p>
+                              </div>
+                              <div class="timeline-text">
+                                <h3 class="fs-4">افتتاح الفرع الرابع</h3>
+                                <p class="mb-0 mt-2 pt-1 text-muted">تم افتتاح الفرع الرابع لتعزيز خدماتنا وتقديم دعم أفضل لعملائنا.</p>
+                                <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light mt-4" style="background:#e47100; border-color: #703800;"> الموقع</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  {% endblock%}

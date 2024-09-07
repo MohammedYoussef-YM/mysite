@@ -1,0 +1,204 @@
+{% extends 'mysite/header.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- Slider Section -->
+    <section class="slideersec">
+        <div class="container position-relative">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {%if slides %}
+                {% for slide in slides  %}
+                {% if slide.name_page == 1 %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img class="d-block w-100" src="{{ slide.image_url.url }}" alt="First slide" />
+                    <div class="carousel-caption">
+                        <h3 class="title">{{slide.title}}</h3>
+                        <p class="description">{{slide.description}}</p>
+                    </div>
+                </div>
+                {% endif %} 
+                {% endfor %}
+                {% endif %} 
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            </div>
+        </div>
+      </section>
+
+    <!-- banner Section -->
+    {% comment %} <section class="slideersec">
+      <div class="container ">
+        <div class="banner">
+          <img class="d-block w-100" src="{%static 'images/who.png'%}" alt="First slide" style="border-radius: 12px;"/>
+        </div>
+      </div>
+    </section> {% endcomment %}
+
+    <!-- about section -->
+    <section class="new-section  serve_info" dir="rtl">
+        {% for titleForPageChoice in TitleForPageChoices  %}
+        {% if titleForPageChoice.name_page == 6 %}
+        <div class="container" style="text-align: start;">
+          <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
+          <div class="new-section-content">
+            <p>{{titleForPageChoice.description}}</p>
+          </div>
+        </div>
+        {% endif %} 
+        {% endfor %}
+    </section>
+  
+    <!--form and map-->
+      <section id="contact-info">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% if about %}
+                {% for abouts in about  %}
+                <div class="col-lg-4 col-sm-6 col-md-6 mt-4">
+                    <div class="contact-info-block text-center">
+                        <i class="pe-7s-map-marker"></i>
+                        <h4>{{abouts.title}}</h4>
+                        <p class="lead">{{abouts.description}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %} 
+            </div>
+        </div>
+      </section> 
+
+      <section class="section m-5" id="contact" dir="rtl">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-8 col-lg-6">
+                    <h5>اترك رسالة</h5>
+                    <!-- Heading -->
+                    <h2 class="section-title mb-2 ">
+                        أخبرنا عن <span class="font-weight-normal">نفسك</span>
+                    </h2>
+
+                    <!-- Subheading -->
+                    <p class="mb-5 ">
+                        سواء كانت لديك أسئلة أو ترغب فقط في إلقاء التحية، تواصل معنا.
+                    </p>
+
+                </div>
+            </div> <!-- / .row -->
+
+            <div class="row">
+                <div class="col-lg-6">
+                  <!-- form message -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                تم إرسال رسالتك بنجاح.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end message -->
+                    <!-- Contacts Form -->
+                    <form class="contact_form" action="mail.php">
+                        <div class="row">
+                            <!-- Input -->
+                            <div class="col-sm-6 mb-6">
+                                <div class="form-group">
+                                    <label class="h6 small d-block text-uppercase">
+                                        اسمك
+                                        <span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group">
+                                        <input class="form-control" name="name" id="name" required="" placeholder="محمد أحمد" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+
+                            <!-- Input -->
+                            <div class="col-sm-6 mb-6">
+                                <div class="form-group">
+                                    <label class="h6 small d-block text-uppercase">
+                                        بريدك الإلكتروني
+                                        <span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group ">
+                                        <input class="form-control" name="email" id="email" required="" placeholder="mohamed@gmail.com" type="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+
+                            <div class="w-100"></div>
+
+                            <!-- Input -->
+                            <div class="col-sm-6 mt-4">
+                                <div class="form-group">
+                                    <label class="h6 small d-block text-uppercase">
+                                        الموضوع
+                                        <span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group">
+                                        <input class="form-control" name="subject" id="subject" required="" placeholder="تصميم ويب" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+
+                            <!-- Input -->
+                            <div class="col-sm-6 mb-6 mt-4">
+                                <div class="form-group">
+                                    <label class="h6 small d-block text-uppercase">
+                                        رقم هاتفك
+                                        <span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group ">
+                                        <input class="form-control" id="phone" name="phone" required="" placeholder="1-800-643-4500" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+
+                        <!-- Input -->
+                        <div class="form-group mb-5 mt-4">
+                            <label class="h6 small d-block text-uppercase">
+                                كيف يمكننا مساعدتك؟
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="input-group">
+                                <textarea class="form-control" rows="4" name="message" id="message" required="" placeholder="مرحبًا، أود أن ..."></textarea>
+                            </div>
+                        </div>
+                        <!-- End Input -->
+
+                        <div class="">
+                          <input name="submit" type="submit" class="btn btn-primary btn-circled" style="background: #e47100; border: #e47100;" value="إرسال رسالة">
+                          
+                            <p class="small pt-3">سنتواصل معك في غضون 1-2 يوم عمل.</p>
+                        </div>
+                    </form>
+                    <!-- End Contacts Form -->
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <!-- START MAP -->
+                    <div id="map"></div>
+                    <!-- END MAP -->
+                </div>
+            </div>
+        </div>
+      </section>
+
+{% endblock %}
