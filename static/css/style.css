@@ -42,13 +42,12 @@ a.active {
 }
 
 .newNav {
-
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
     padding: 0.5em 0;
+    margin-top: 40px;
     align-items: center;
-    
 }
 
 .navigation p {
