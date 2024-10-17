@@ -1,0 +1,73 @@
+{% extends 'header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+
+    <!-- Slider Section -->
+    <section class="slideersec" style="height:450px">
+      <div class="container-fluid fluid position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height:450px">
+                  <img class="d-block w-100" style="height:450px" src="{{ slide.image_url.url }}" alt="First slide" />
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+          </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </a>
+              <div class="indicator-container-fluid d-flex justify-content-center mt-3">
+                  <span class="indicator active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></span>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- hased section -->
+    <section class="new-section  serve_info" dir="rtl">
+      {% for titleForPageChoice in TitleForPageChoices  %}
+      {% if titleForPageChoice.name_page == 5 %}
+      <div class="container" style="text-align: start;">
+        <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
+        <div class="new-section-content">
+          <p>{{titleForPageChoice.description}}</p>
+        </div>
+      </div>
+      {% endif %} 
+      {% endfor %}
+    </section>
+
+    <section>
+      <div class="container">
+        <!-- Navigation -->
+        <div class="corporateNav cstmr" dir="rtl">
+          {% if hasad %}
+            {% for hasads in hasad %}
+              <p data-target="section-{{ hasads.id }}">{{ hasads.title }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <!-- Sections -->
+        {% if hasad %}
+          {% for hasads in hasad %}
+            <div class="mb-5 showing section-{{ hasads.id }}" style="text-align: start;" dir="rtl">
+              <p class="section-{{ hasads.id }}-title">{{ hasads.question }}</p>
+              <p class="section-{{ hasads.id }}-text">{{ hasads.answer }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section> 
+  {% endblock%}
