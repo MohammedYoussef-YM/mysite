@@ -1,0 +1,78 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header"
+       style="background-repeat: no-repeat;background-size: cover !important; 
+           background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(/media/{{partnerss.0.image_cover_page}});"
+         >
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                    <h1 class="display-3 text-white animated slideInDown">فريقنا</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">الرئيسية /  &nbsp; </a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">صفحات</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">فريقنا </li>
+                        </ol>
+                    </nav>
+                {% else %}
+                <h1 class="display-3 text-white animated slideInDown">PARTNERS</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Team</li>
+                        </ol>
+                    </nav>
+                {% endif %}
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+        <!--PARTNERS Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                    <h6 class="section-title bg-white text-center text-primary px-3">الشركاء</h6>
+                    <h1 class="mb-5">شركاء اي ليرن اكاديمي </h1>        
+               {% else %}    
+               <h6 class="section-title bg-white text-center text-primary px-3">Partnership</h6>
+               <h1 class="mb-5">ilearn Academy Partnership</h1>
+    {% endif %} 
+    
+                </div>
+                <div class="row g-4">
+                    {%for partnser in partnerss%}
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                     <div class="team-item bg-light">
+                       <div class="overflow-hidden" style="text-align: center;">
+                                <img class="img-fluid" src="{{partnser.image.url}}" alt="">
+                            </div>
+                           
+                            <div class="text-center p-4">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                <h5 class="mb-0">{{partnser.title_ar}}</h5>
+                                <small>{{partnser.description_ar}}</small>
+                               {% else %}
+                               <h5 class="mb-0">{{partnser.title}}</h5>
+                               <small>{{partnser.description}}</small>
+                               {% endif %}
+    
+                            </div>
+                        </div>
+                    </div>
+                     {%endfor%}
+                </div>
+            </div>
+        </div>
+        <!--PARTNERS End -->
+
+{% endblock %}
