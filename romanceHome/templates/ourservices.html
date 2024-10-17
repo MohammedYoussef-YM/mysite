@@ -1,0 +1,81 @@
+{% extends 'header.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+
+    <!-- Slider Section -->
+    <section class="slideersec" style="height:450px">
+      <div class="container-fluid fluid position-relative">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {%if slides %}
+              {% for slide in slides  %}
+              {% if slide.name_page == 1 %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height:450px">
+                  <img class="d-block w-100" style="height:450px" src="{{ slide.image_url.url }}" alt="First slide" />
+              </div>
+              {% endif %} 
+              {% endfor %}
+              {% endif %} 
+          </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </a>
+              <div class="indicator-container-fluid d-flex justify-content-center mt-3">
+                  <span class="indicator active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></span>
+                  <span class="indicator" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></span>
+              </div>
+          </div>
+      </div>
+    </section>
+
+<!-- Service Section -->
+  <section class="new-section  serve_info" dir="rtl">
+    {% for titleForPageChoice in TitleForPageChoices  %}
+    {% if titleForPageChoice.name_page == 4 %}
+    <div class="container" style="text-align: start;">
+      <h1 class="new-section-title">{{titleForPageChoice.title}}</h1>
+      <div class="new-section-content">
+        <p>{{titleForPageChoice.description}}</p>
+      </div>
+    </div>
+    {% endif %} 
+    {% endfor %}
+  </section>
+
+<!-- Cards Section -->
+<section class="new-section" dir="rtl">
+  <div class="container">
+      <div class="card-deck">
+          <!-- Cards -->
+          {%if Service %}
+          {% for Services in Service  %}
+          <div class="card">
+              <img src="{{Services.image.url}}" alt="خدمة" class="img-fluid" />
+              <div class="card-body">
+                  <h5 class="card-title">{{Services.title}}</h5>
+                  <div class="card-text">
+                      <div class="price">
+                          <span> {{Services.price}} </span>
+                      </div>
+                      <div class="number">
+                          <span>  {{Services.number}}  </span>
+                          <i class="fas fa-users"> </i>
+                      </div>
+                  </div>
+              </div>
+              <a href="{{Services.url}}" class="btn btn-primary m-2 card-btn">شاهد</a>
+          </div>
+          {% endfor %}
+          {% endif %} 
+      </div>
+  </div>
+</section>
+    
+{% endblock%}
